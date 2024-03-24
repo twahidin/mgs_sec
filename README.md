@@ -5,7 +5,7 @@
 ```
 default_title = "ETD Prototype Framework"
 super_admin_username = "super_admin"
-super_admin_password = "pass1234"
+super_admin_password = "any_password"
 [MONGO]
 URI = "mongodb+srv...."
 DATABASE =  "YOUR_DB"
