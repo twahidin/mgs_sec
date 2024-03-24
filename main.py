@@ -260,6 +260,7 @@ def main():
 		#Organisation Tools
 		elif st.session_state.option == "Org Management":
 			if st.session_state.user['profile_id'] == SA or st.session_state.user['profile_id'] == AD:
+				create_flag = True
 				if st.session_state.user['profile_id'] == SA:
 					create_flag = False
 				steps_options = sac.steps(

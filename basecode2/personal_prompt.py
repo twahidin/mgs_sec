@@ -262,8 +262,11 @@ def load_templates_class():
 	if st.session_state.user['profile_id'] == SA:
 		return
 	my_class  = load_my_class()
+	if my_class == None:
+		st.error("Class not allocated to you. Please contact the admin.")
+		return
 	if isinstance(my_class, list):
-    # Convert list to a nicely formatted string
+	# Convert list to a nicely formatted string
 		class_str = ', '.join(my_class)
 		st.write(f"#### :blue_book: My assigned class: {class_str}")
 	else:
@@ -297,9 +300,13 @@ def load_templates_class():
 	
 
 def load_my_class():
-	student_class = st.session_state.u_collection.find_one({"username": st.session_state.user['id']}, {"class": 1})
-	return student_class['class']
-	#load class to students
+	student_document = st.session_state.u_collection.find_one(
+	{"username": st.session_state.user['id']},
+	{"class": 1, "_id": 0}
+	)
+	if student_document:
+		student_class = student_document.get('class', 'Class not specified')
+		return student_class
  
 def list_teachers_for_student(student_class):
 	# Since 'student_class' is now a single class (not a list),

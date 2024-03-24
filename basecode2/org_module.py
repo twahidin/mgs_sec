@@ -408,8 +408,8 @@ def setup_users():
 		elif action == 'Edit Usernames':
 			edit_usernames(school)
 	elif st.session_state.user['profile_id'] == AD:
-		st.write(f":green[School Selected: {st.session_state.user['sch_name']}]")
-		school = st.session_state.user['sch_name']
+		st.write(f":green[School Selected: {st.session_state.user['school_id']}]")
+		school = st.session_state.user['school_id']
 		action = st.selectbox('Select Action', ['Edit User', 'Remove User', 'Create Users'], key='u_action')
 		if action == 'Edit User':
 			setup_mass_edit_users(school)
@@ -488,8 +488,8 @@ def manage_app_access():
 		edit_function(school)
 		
 	elif st.session_state.user['profile_id'] == AD:
-		st.write(f":green[School Selected: {st.session_state.user['sch_name']}]")
-		edit_function(st.session_state.user['sch_name'])
+		st.write(f":green[School Selected: {st.session_state.user['school_id']}]")
+		edit_function(st.session_state.user['school_id'])
 	else:
 		st.warning('You do not have the required permissions to perform this action')
 
@@ -567,13 +567,13 @@ def manage_organisation():
 				generate_school_structure(sch_doc)
 		manage_levels_classes(school)
 	elif st.session_state.user['profile_id'] == AD:
-		st.write(f":green[School Selected: {st.session_state.user['sch_name']}]")
-		sch_doc = st.session_state.s_collection.find_one({"sch_name": st.session_state.user['sch_name']})
+		st.write(f":green[School Selected: {st.session_state.user['school_id']}]")
+		sch_doc = st.session_state.s_collection.find_one({"sch_name": st.session_state.user['school_id']})
 		if sch_doc:
 			c1, c2 = st.columns([1, 3])
 			with c1:
 				generate_school_structure(sch_doc)
-		manage_levels_classes(st.session_state.user['sch_name'])
+		manage_levels_classes(st.session_state.user['school_id'])
 	else:
 		st.warning('You do not have the required permissions to perform this action')
 
@@ -857,11 +857,11 @@ def manage_teachers_school():
 		else:
 			st.warning("Please select a school first.")
 	elif st.session_state.user['profile_id'] == AD:
-		st.write(f":green[School Selected: {st.session_state.user['sch_name']}]")
+		st.write(f":green[School Selected: {st.session_state.user['school_id']}]")
 		c1, c2 = st.columns([1, 3])
 		with c1:
-			generate_full_structure(st.session_state.user['sch_name'], st.session_state.s_collection, st.session_state.u_collection)
-		manage_teachers(st.session_state.user['sch_name'])
+			generate_full_structure(st.session_state.user['school_id'], st.session_state.s_collection, st.session_state.u_collection)
+		manage_teachers(st.session_state.user['school_id'])
 	else:
 		st.warning('You do not have the required permissions to perform this action')
 
@@ -1151,11 +1151,11 @@ def manage_students_school():
 		else:
 			st.warning("Please select a school first.")
 	elif st.session_state.user['profile_id'] == AD:
-		st.write(f":green[School Selected: {st.session_state.user['sch_name']}]")
+		st.write(f":green[School Selected: {st.session_state.user['school_id']}]")
 		c1, c2 = st.columns([1, 3])
 		with c1:
-			generate_full_structure(st.session_state.user['sch_name'], st.session_state.s_collection, st.session_state.u_collection)
-		manage_students(st.session_state.user['sch_name'])
+			generate_full_structure(st.session_state.user['school_id'], st.session_state.s_collection, st.session_state.u_collection)
+		manage_students(st.session_state.user['school_id'])
 	else:
 		st.warning('You do not have the required permissions to perform this action')
 
