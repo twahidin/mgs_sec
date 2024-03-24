@@ -270,7 +270,7 @@ def main():
 										sac.StepsItem(title='Manage School'),
 										sac.StepsItem(title='Function Access'),
 										sac.StepsItem(title='User Assignments'),
-										sac.StepsItem(title='App configuration',disabled=create_flag),
+										sac.StepsItem(title='App configuration'),
 									]
 								)
 				if steps_options == "Create new school":
