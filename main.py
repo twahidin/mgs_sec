@@ -6,7 +6,7 @@ from basecode2.app_management import load_app_settings, load_sa_app_settings
 from basecode2.authenticate import login_function
 from basecode2.personal_prompt import set_prompt_settings, manage_prompt_templates, load_templates_class
 from basecode2.rag_mongodb import rag_creator_mongodb
-from basecode2.app_management import set_app_settings, delete_app_settings, delete_prompt_settings
+from basecode2.app_management import set_app_settings, delete_app_settings, delete_prompt_settings, propagate_prompts
 from basecode2.org_module import (
 	setup_users, 
 	manage_app_access, 
@@ -142,7 +142,7 @@ def load_chatbot_session_states():
 		st.session_state.rag_response = None
   
 def load_mongo_db():
-    pass	
+	pass	
 
 
 def load_safa_session_states():
@@ -297,6 +297,8 @@ def main():
 					delete_app_settings()
 					st.divider()
 					delete_prompt_settings()
+					st.divider()
+					propagate_prompts()
 				else:
 					st.subheader(f":red[This option is accessible only to administrators only]")	
 				pass
